@@ -7,10 +7,13 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+.vite.config.js.un~
+dist
 node_modules
 dist-ssr
 *.local
 
+..gitignore.un~
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
