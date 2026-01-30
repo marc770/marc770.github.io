@@ -1,1 +1,1 @@
-{"name":"marc770.github.io","short_name":"marc770.github.io","start_url":"/","display":"standalone","background_color":"#ffffff","theme_color":"#42b883","lang":"en","scope":"/"}
+{"name":"Audio Viewer","short_name":"AudioViewer","description":"A lightweight audio visualizer PWA built with Vite + Lit.","start_url":"/","display":"standalone","background_color":"#111111","theme_color":"#111111","lang":"en","scope":"/","icons":[{"src":"/icons/icon-192.png","type":"image/png","sizes":"192x192"},{"src":"/icons/icon-512.png","type":"image/png","sizes":"512x512"}]}
