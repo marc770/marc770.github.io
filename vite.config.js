@@ -3,9 +3,9 @@ import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
-  build: {
-    outDir: 'docs',
-  },
+  // For a user site at https://<user>.github.io/, either omit base or set '/'
+  base: '/',
+  build: { outDir: 'docs' },
   plugins: [
     VitePWA({
       registerType: 'autoUpdate',
@@ -14,30 +14,23 @@ export default defineConfig({
         'icons/icon-512.png'
       ],
       manifest: {
-        name: "Audio Viewer",
-        short_name: "AudioViewer",
-        start_url: "/",
-        scope: "/",
-        display: "standalone",
-        background_color: "#111111",
-        theme_color: "#111111",
-        description: "A lightweight audio visualizer PWA built with Vite + Lit.",
+        name: 'Audio Viewer',
+        short_name: 'AudioViewer',
+        start_url: '/',
+        scope: '/',
+        display: 'standalone',
+        background_color: '#111111',
+        theme_color: '#111111',
+        description: 'A lightweight audio visualizer PWA built with Vite + Lit.',
         icons: [
-          {
-            src: "/icons/icon-192.png",
-            type: "image/png",
-            sizes: "192x192"
-          },
-          {
-            src: "/icons/icon-512.png",
-            type: "image/png",
-            sizes: "512x512"
-          }
+          { src: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
+          { src: '/icons/icon-512.png', sizes: '512x512', type: 'image/png' }
+          // If you have maskables, include them too:
+          // { src: '/icons/maskable-192.png', sizes: '192x192', type: 'image/png', purpose: 'maskable' },
+          // { src: '/icons/maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' }
         ]
       },
-      devOptions: {
-        enabled: true
-      }
+      devOptions: { enabled: false } // use prod SW for preview
     })
   ]
 })
