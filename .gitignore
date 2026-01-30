@@ -12,6 +12,7 @@ dist
 node_modules
 dist-ssr
 *.local
+dev-dist/
 
 ..gitignore.un~
 # Editor directories and files
