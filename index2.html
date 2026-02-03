@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Minimal Web Bluetooth</title>
+
+  <button id="btn">Connect</button>
+  <pre id="out"></pre>
+
+  <script>
+    const out = document.getElementById('out');
+    const btn = document.getElementById('btn');
+
+    function log(s) {
+      out.textContent += s + "\n";
+      console.log(s);
+    }
+
+    btn.addEventListener('click', async () => {
+      try {
+        if (!navigator.bluetooth) {
+          log("Web Bluetooth not supported in this browser.");
+          return;
+        }
+
+        log("Requesting device...");
+        // requestDevice must be called from a user gesture (e.g. click). [3](https://developer.chrome.com/docs/capabilities/bluetooth)
+        const device = await navigator.bluetooth.requestDevice({
+          // Filter to devices advertising Battery Service (common demo target)
+          filters: [{ services: ['battery_service'] }],
+          // Declare services you want to access after pairing/selection. [1](https://developer.mozilla.org/en-US/docs/Web/API/Bluetooth/requestDevice)[2](https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API)
+          optionalServices: ['battery_service'],
+        });
+
+        log(`Selected: ${device.name || '(unnamed)'} (${device.id})`);
+
+        device.addEventListener('gattserverdisconnected', () => {
+          log("Disconnected.");
+        });
+
+        log("Connecting...");
+        const server = await device.gatt.connect();
+        log("Connected.");
+
+        // Read Battery Level (0x2A19) from Battery Service (0x180F). [2](https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API)
+        const service = await server.getPrimaryService('battery_service');
+        const ch = await service.getCharacteristic('battery_level');
+        const value = await ch.readValue();
+        const pct = value.getUint8(0);
+
+        log(`Battery: ${pct}%`);
+      } catch (e) {
+        log("Error: " + (e && e.message ? e.message : e));
+      }
+    });
+  </script>
+</html>
