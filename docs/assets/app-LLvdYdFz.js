@@ -1,4 +1,4 @@
-import{k as Di}from"./klirr--dYe4lik.js";function Ni(){return`  
+import{k as Di}from"./klirr-CoaLLF2q.js";function Ni(){return`  
         <h1>Inräknad!</h1>
   
         <div class="card">
