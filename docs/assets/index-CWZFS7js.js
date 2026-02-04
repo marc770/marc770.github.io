@@ -1,4 +1,4 @@
-import{k as t}from"./klirr-DYEnq7VW.js";document.querySelector("#app").innerHTML=`
+import{k as t}from"./klirr--dYe4lik.js";document.querySelector("#app").innerHTML=`
   <div class="page">
     <img src="${t}" class="logo" alt="Klirr logo" />
     <h1>Meny</h1>
